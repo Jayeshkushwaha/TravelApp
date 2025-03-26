@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, Image, SafeAreaView, StatusBar, Platf
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useFocusEffect } from '@react-navigation/native';
+import FastImage from 'react-native-fast-image';
 
 interface LikedDestination {
   title: string;
@@ -37,7 +38,7 @@ const LikeScreen = () => {
 
   const renderItem = ({ item }: { item: LikedDestination }) => (
     <View style={styles.itemContainer}>
-      <Image source={{ uri: item.image }} style={styles.itemImage} />
+      <FastImage source={{ uri: item.image, priority: FastImage.priority.high }} style={styles.itemImage} resizeMode={FastImage.resizeMode.cover} />
       <View style={styles.itemDetails}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <View style={styles.locationRow}>
