@@ -85,14 +85,6 @@ const DestinationDetailScreen = ({ route }: { route: RouteParams }) => {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Icon name="arrow-back" size={30} color="black" />
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
-          <Icon
-            name={isLiked ? 'heart' : 'heart-outline'}
-            size={30}
-            color={isLiked ? '#FF6347' : 'black'}
-          />
-        </TouchableOpacity>
       </View>
 
       <View style={styles.infoContainer}>
@@ -106,6 +98,14 @@ const DestinationDetailScreen = ({ route }: { route: RouteParams }) => {
             </TouchableOpacity>
           ))}
         </ScrollView>
+
+        <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
+          <Icon
+            name={isLiked ? 'heart' : 'heart-outline'}
+            size={30}
+            color={isLiked ? '#FF6347' : 'black'}
+          />
+        </TouchableOpacity>
 
         <View style={styles.rowBetween}>
           <View>
@@ -152,7 +152,7 @@ const DestinationDetailScreen = ({ route }: { route: RouteParams }) => {
         </View>
 
         <View style={styles.descriptionContainer}>
-          <Text style={styles.descriptionText} numberOfLines={6}>
+          <Text style={styles.descriptionText} numberOfLines={5}>
             {destination.description}Bali is the only Hindu-majority province in Indonesia, with 86.9% of the population adhering to Balinese Hinduism. It is renowned for its highly developed arts, including traditional and modern dance, sculpture, painting, leather, metalworking, and music. The Indonesian International Film Festival is held every year in Bali.
             <Text style={styles.readMoreText} onPress={handleReadMore}> READ MORE</Text>
           </Text>
@@ -191,11 +191,16 @@ const styles = StyleSheet.create({
   },
   likeButton: {
     position: 'absolute',
-    bottom: 40,
+    top: -25,
     right: 15,
     backgroundColor: 'white',
     borderRadius: 25,
     padding: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
   infoContainer: {
     backgroundColor: '#f9f9f9',
@@ -204,6 +209,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   galleryContainer: {
+    marginTop: 20,
     marginBottom: 20,
     padding: 10,
     backgroundColor: 'white',
