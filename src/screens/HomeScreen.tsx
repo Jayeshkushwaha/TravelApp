@@ -299,7 +299,6 @@ const styles = StyleSheet.create({
   },
   featuredRating: {
     fontSize: 14,
-    color: '#FFA500',
   },
   seeAllText: {
     color: '#0A453E',
