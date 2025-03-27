@@ -153,8 +153,8 @@ const DestinationDetailScreen = ({ route }: { route: RouteParams }) => {
 
         <View style={styles.descriptionContainer}>
           <Text style={styles.descriptionText} numberOfLines={5}>
-            {destination.description}Bali is the only Hindu-majority province in Indonesia, with 86.9% of the population adhering to Balinese Hinduism. It is renowned for its highly developed arts, including traditional and modern dance, sculpture, painting, leather, metalworking, and music. The Indonesian International Film Festival is held every year in Bali.
-            <Text style={styles.readMoreText} onPress={handleReadMore}> READ MORE</Text>
+            {destination.description}Bali is the only Hindu-majority province in Indonesia, with 86.9% of the population adhering to Balinese Hinduism. It is renowned for its highly developed arts, including traditional and modern dance, sculpture, painting, leather, metalworking, and music.
+            <Text style={styles.readMoreText} onPress={handleReadMore}> Read more</Text>
           </Text>
         </View>
 
