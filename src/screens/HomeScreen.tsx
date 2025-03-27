@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 7,
     marginHorizontal: 20,
   },
   categoriesContainer: {
@@ -261,13 +261,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 15,
   },
   featuredCard: {
-    marginLeft: 20,
+    marginLeft: 17,
     borderRadius: 15,
     backgroundColor: 'white',
-    marginVertical: 10,
+    marginVertical: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.3,
@@ -277,11 +276,11 @@ const styles = StyleSheet.create({
   featuredImage: {
     width: 200,
     height: 200,
-    borderRadius: 15,
+    borderRadius: 10,
     marginBottom: 10,
   },
   featuredInfo: {
-    padding: 10,
+    padding: 7,
   },
   star: {
     flexDirection: 'row',
@@ -311,8 +310,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 10,
-    padding: 10,
-    marginBottom: 10,
+    padding: 7,
+    marginBottom: 5,
     justifyContent: 'space-between',
     marginVertical: 5,
     marginHorizontal: 20,
@@ -325,7 +324,7 @@ const styles = StyleSheet.create({
   exploreImage: {
     width: 130,
     height: 100,
-    borderRadius: 10,
+    borderRadius: 7,
     marginRight: 10,
   },
   exploreInfo: {
