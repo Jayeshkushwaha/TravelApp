@@ -63,7 +63,6 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
 
-      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.headerContainer}>
           <View style={styles.iconWrapper}>
             <Icon name="menu" size={28} color="#333" />
@@ -91,6 +90,7 @@ const HomeScreen = () => {
           />
         </View>
 
+        <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.sectionTitle}>Categories</Text>
         <View style={styles.categoriesContainer}>
           {categories.map(category => (
