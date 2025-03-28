@@ -63,129 +63,131 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
 
-      <View style={styles.headerContainer}>
-        <View style={styles.iconWrapper}>
-          <Icon name="menu" size={28} color="#333" />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.headerContainer}>
+          <View style={styles.iconWrapper}>
+            <Icon name="menu" size={28} color="#333" />
+          </View>
+          <View style={styles.iconWrapper}>
+            <Icon name="notifications-outline" size={28} color="#333" />
+            <View style={styles.notificationBadge} />
+          </View>
         </View>
-        <View style={styles.iconWrapper}>
-          <Icon name="notifications-outline" size={28} color="#333" />
-          <View style={styles.notificationBadge} />
+
+        <Text style={styles.header}>Explore the world!</Text>
+
+        <View style={styles.searchContainer}>
+          <Icon name="search" size={20} color="#999" style={styles.searchIcon} />
+          <TextInput
+            placeholder="Search here"
+            placeholderTextColor="#999"
+            style={styles.searchInput}
+          />
+          <Icon
+            name="options-outline"
+            size={20}
+            color="#999"
+            style={styles.filterIcon}
+          />
         </View>
-      </View>
 
-      <Text style={styles.header}>Explore the world!</Text>
-
-      <View style={styles.searchContainer}>
-        <Icon name="search" size={20} color="#999" style={styles.searchIcon} />
-        <TextInput
-          placeholder="Search here"
-          placeholderTextColor="#999"
-          style={styles.searchInput}
-        />
-        <Icon
-          name="options-outline"
-          size={20}
-          color="#999"
-          style={styles.filterIcon}
-        />
-      </View>
-
-      <Text style={styles.sectionTitle}>Categories</Text>
-      <View style={styles.categoriesContainer}>
-        {categories.map(category => (
-          <TouchableOpacity
-            key={category}
-            style={[
-              styles.categoryButton,
-              selectedCategory === category && styles.selectedCategoryButton,
-            ]}
-            onPress={() => setSelectedCategory(category)}
-          >
-            <Text
-              style={[
-                styles.categoryText,
-                selectedCategory === category && styles.selectedCategoryText,
-              ]}
-            >
-              {category}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      <View style={styles.featuredSection}>
-        <FlatList
-          data={featuredDestinations}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
+        <Text style={styles.sectionTitle}>Categories</Text>
+        <View style={styles.categoriesContainer}>
+          {categories.map(category => (
             <TouchableOpacity
-              style={styles.featuredCard}
-              onPress={() =>
-                navigation.navigate('DestinationDetail', { destination: item })
-              }
+              key={category}
+              style={[
+                styles.categoryButton,
+                selectedCategory === category && styles.selectedCategoryButton,
+              ]}
+              onPress={() => setSelectedCategory(category)}
             >
-              <View style={styles.featuredInfo}>
-                <Image source={{ uri: item.image }} style={styles.featuredImage} />
-                <View style={styles.star}>
-                  <View>
-                    <Text style={styles.featuredTitle}>{item.title}</Text>
-                    <Text style={styles.featuredLocation}>
-                      <Icon name="location-outline" size={14} color="#666" />{' '}
-                      {item.location}
-                    </Text>
+              <Text
+                style={[
+                  styles.categoryText,
+                  selectedCategory === category && styles.selectedCategoryText,
+                ]}
+              >
+                {category}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <View style={styles.featuredSection}>
+          <FlatList
+            data={featuredDestinations}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.featuredCard}
+                onPress={() =>
+                  navigation.navigate('DestinationDetail', { destination: item })
+                }
+              >
+                <View style={styles.featuredInfo}>
+                  <Image source={{ uri: item.image }} style={styles.featuredImage} />
+                  <View style={styles.star}>
+                    <View>
+                      <Text style={styles.featuredTitle}>{item.title}</Text>
+                      <Text style={styles.featuredLocation}>
+                        <Icon name="location-outline" size={14} color="#666" />{' '}
+                        {item.location}
+                      </Text>
+                    </View>
+                    <Text style={styles.featuredRating}>⭐ {item.rating}</Text>
                   </View>
-                  <Text style={styles.featuredRating}>⭐ {item.rating}</Text>
                 </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
+          <Text style={styles.sectionTitle}>Explore more</Text>
+          <Text style={[styles.sectionTitle, { color: '#0A453E' }]}>See all</Text>
+        </View>
+        <FlatList
+          data={exploreMoreDestinations}
+          keyExtractor={item => item.id}
+          showsVerticalScrollIndicator={false}
+          nestedScrollEnabled={true}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.exploreCard} onPress={() =>
+              navigation.navigate('DestinationDetail', { destination: item })
+            }>
+              <Image source={{ uri: item.image }} style={styles.exploreImage} />
+              <View style={styles.exploreInfo}>
+                <Text style={styles.exploreTitle}>{item.title}</Text>
+                <Text style={styles.exploreLocation}>
+                  <Icon name="location-outline" size={14} color="#666" />{' '}
+                  {item.location}
+                </Text>
+                {item.users && (
+                  <View style={styles.userContainer}>
+                    {item.users.map((user, index) => (
+                      <Image
+                        key={index}
+                        source={{ uri: user }}
+                        style={[
+                          styles.userAvatar,
+                          {
+                            zIndex: item.users.length - index,
+                            marginLeft: index > 0 ? -10 : 0,
+                          },
+                        ]}
+                      />
+                    ))}
+                    <Text style={styles.userCount}>+{item.userCount}</Text>
+                  </View>
+                )}
               </View>
             </TouchableOpacity>
           )}
         />
-      </View>
-
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
-        <Text style={styles.sectionTitle}>Explore more</Text>
-        <Text style={[styles.sectionTitle, { color: '#0A453E' }]}>See all</Text>
-      </View>
-      <FlatList
-        data={exploreMoreDestinations}
-        keyExtractor={item => item.id}
-        showsVerticalScrollIndicator={false}
-        nestedScrollEnabled={true}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.exploreCard} onPress={() =>
-            navigation.navigate('DestinationDetail', { destination: item })
-          }>
-            <Image source={{ uri: item.image }} style={styles.exploreImage} />
-            <View style={styles.exploreInfo}>
-              <Text style={styles.exploreTitle}>{item.title}</Text>
-              <Text style={styles.exploreLocation}>
-                <Icon name="location-outline" size={14} color="#666" />{' '}
-                {item.location}
-              </Text>
-              {item.users && (
-                <View style={styles.userContainer}>
-                  {item.users.map((user, index) => (
-                    <Image
-                      key={index}
-                      source={{ uri: user }}
-                      style={[
-                        styles.userAvatar,
-                        {
-                          zIndex: item.users.length - index,
-                          marginLeft: index > 0 ? -10 : 0,
-                        },
-                      ]}
-                    />
-                  ))}
-                  <Text style={styles.userCount}>+{item.userCount}</Text>
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-        )}
-      />
+      </ScrollView>
     </SafeAreaView>
   );
 };
